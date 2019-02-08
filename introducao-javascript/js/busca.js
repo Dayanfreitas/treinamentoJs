@@ -8,13 +8,23 @@ botaoAdd.addEventListener("click",function(){
 	var xhr = new XMLHttpRequest();
 	xhr.open(tipo,endereço)
 	xhr.addEventListener("load",function(){
-		var resposta = xhr.responseText
-		var paciente =  JSON.parse(resposta)
-		
-		paciente.forEach(function(i){
+	var erroAjax = document.querySelector("#erro-ajax");
+
+	if(xhr.status == 200){
+			erroAjax.classList.add("some")
+			
+			var resposta = xhr.responseText
+			var paciente =  JSON.parse(resposta)
+			paciente.forEach(function(i){
 			addPacienteNaTabela(i)
-		})
+			});
+		}else{
+			erroAjax.classList.remove("some")
+			erroAjax.style.color="red"
+			console.log(xhr.status)
+			console.logs(xhr.responseText)
+			
+		}
 	})
 	xhr.send()
-	
 })
