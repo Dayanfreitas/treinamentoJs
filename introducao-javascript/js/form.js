@@ -6,25 +6,27 @@
 var botao = document.querySelector("#adicionar-paciente");
 botao.addEventListener("click", function(event){
 	event.preventDefault();
-  
+	
     var form = document.querySelector("#forme-adiciona"); 
     var paciente = obterPacienteDoFormulario(form);
-    var pacienteTr = montaTr(paciente);
-  
+	
 	var erros = validaPaciente(paciente);
 	console.log(erros)
-	
 	if(erros.length > 0){
 		exibeMensagemDeErro(erros);
 		return;
 	}
-    var tabela = document.querySelector("#tabela-pacientes")
-	tabela.appendChild(pacienteTr);
 	
+	addPacienteNaTabela(paciente)
     form.reset();//form clear
 	var mensagensErro = document.querySelector("#mensagens-erro")
 	mensagensErro.innerHTML = " " //limpar erros
 })
+function addPacienteNaTabela(paciente){
+	 var pacienteTr = montaTr(paciente);
+	 var tabela = document.querySelector("#tabela-pacientes")
+	 tabela.appendChild(pacienteTr);
+}
 function obterPacienteDoFormulario(form){
     var paciente = {
         nome:form.nome.value,
