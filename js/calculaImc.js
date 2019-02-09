@@ -31,6 +31,10 @@ for(var i=0; i < pacientes.length;i++){
 	if(alturaValida && pesoValido){
 		var imc =  calcularImc(peso,altura)
 		paciente.querySelector(".info-imc").textContent = imc;
+		
+		var dado = verificaStatus(imc)
+		paciente.appendChild(montaTd(dado,"info-status"))	
+		
 	}
 }
 function validaPeso(peso){
@@ -44,4 +48,21 @@ function validaAltura(altura){
 function calcularImc(peso,altura){
 	var imc =  peso/(altura * altura)
 	return imc.toFixed(2)
+}
+function verificaStatus(imc){
+	var msg = ""
+	if(imc <= 18.5){
+		msg = "Abaixo do peso"
+	}else if(imc >= 18.6 && imc <=24.9 ){
+		msg = "Peso ideal"
+	}else if(imc >= 25 && imc <= 29.9){
+		msg = "Levemente acima do peso"
+	}else if(imc >= 30 && imc <=34.9){
+		msg = "Obesidade grau I"
+	}else if(imc >=35 && imc <=39.9){
+		msg = "Obesidade grau II"
+	}else{
+		msg = "Obesidade grau III"
+	}
+	return msg
 }

@@ -47,8 +47,9 @@ function montaTr(paciente){
 	pacienteTr.appendChild(montaTd(paciente.altura,"info-altura"));
 	pacienteTr.appendChild(montaTd(paciente.gordura,"info-gordura"));
     pacienteTr.appendChild(montaTd(paciente.imc,"info-imc"));
-
-    return pacienteTr
+	pacienteTr.appendChild(montaTd(verificaStatus(paciente.imc),"info-status"));
+	
+	return pacienteTr
 }
 
 function montaTd(dado,classe){
