@@ -1,1 +1,2 @@
-Curso de Treinamento feito na Alura
+# Curso JavaScript  
+Esse projeto foi desenvolvido pelo o Curso do [Alura](https://www.alura.com.br/)
